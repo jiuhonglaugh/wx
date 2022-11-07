@@ -1,0 +1,20 @@
+2022-11-05 20:34:19,121  Logger.py : INFO  request base
+2022-11-05 20:36:32,028 [INFO] Logger.py  request base
+2022-11-05 20:39:24,851 [INFO] [Logger.py] Logger.py  request base
+2022-11-05 20:40:14,088 [INFO] [user_blue] Logger.py  request base
+2022-11-05 20:40:34,683 [INFO] [user_blue] request base
+2022-11-05 20:41:11,016 [INFO] [D:\workspaces\PycharmProjects\wx\control\views\user.py] request base
+2022-11-05 20:41:28,723 [INFO] [control.views.user] request base
+2022-11-05 20:41:47,605 [INFO] [D:\workspaces\PycharmProjects\wx\control\views\user.py] request base
+2022-11-05 20:42:00,519 [INFO] [control.views.user] request base
+2022-11-05 20:43:09,601 [INFO] [control.views.user] request base
+2022-11-05 20:52:52,776 [INFO] [control.views.user] request base
+2022-11-05 20:53:20,157 [INFO] [control.views.user] request base
+2022-11-05 20:54:13,244 [INFO] [control.views.user] request base
+2022-11-05 20:54:14,170 [INFO] [control.views.user] request base
+2022-11-05 21:54:31,619 [INFO] [control.views.user] {'account': 'zhujiuhong123', 'avatar': 'http://wx.qlogo.cn/mmhead/ver_1/CicoJe3rficicG5wWx5dzf9TxO07oY2sq0B5E5JGyEJKT60js1ic4m4jO0aqicTAxX1SCMRpbwVDmfZ7bZqdn6pY5qw/132', 'nickname': '微笑', 'phone': '18344031528', 'pid': 16012, 'unread_msg_count': 0, 'wx_user_dir': 'D:\\soft-doc\\Tencent\\WeChat Files\\wo772590001\\', 'wxid': 'wo772590001'}
+2022-11-05 21:57:07,122 [INFO] [control.views.user] {'account': 'zhujiuhong123', 'avatar': 'http://wx.qlogo.cn/mmhead/ver_1/CicoJe3rficicG5wWx5dzf9TxO07oY2sq0B5E5JGyEJKT60js1ic4m4jO0aqicTAxX1SCMRpbwVDmfZ7bZqdn6pY5qw/0', 'nickname': '微笑', 'phone': '18344031528', 'pid': 8128, 'unread_msg_count': 0, 'wx_user_dir': 'D:\\soft-doc\\Tencent\\WeChat Files\\wo772590001\\', 'wxid': 'wo772590001'}
+2022-11-05 22:03:53,321 [INFO] [control.views.user] {'account': 'zhujiuhong123', 'avatar': 'http://wx.qlogo.cn/mmhead/ver_1/CicoJe3rficicG5wWx5dzf9TxO07oY2sq0B5E5JGyEJKT60js1ic4m4jO0aqicTAxX1SCMRpbwVDmfZ7bZqdn6pY5qw/132', 'nickname': '微笑', 'phone': '18344031528', 'pid': 12712, 'unread_msg_count': 0, 'wx_user_dir': 'D:\\soft-doc\\Tencent\\WeChat Files\\wo772590001\\', 'wxid': 'wo772590001'}
+2022-11-05 22:06:10,827 [INFO] [control.views.user] {'account': 'zhujiuhong123', 'avatar': 'http://wx.qlogo.cn/mmhead/ver_1/CicoJe3rficicG5wWx5dzf9TxO07oY2sq0B5E5JGyEJKT60js1ic4m4jO0aqicTAxX1SCMRpbwVDmfZ7bZqdn6pY5qw/0', 'nickname': '微笑', 'phone': '18344031528', 'pid': 13144, 'unread_msg_count': 0, 'wx_user_dir': 'D:\\soft-doc\\Tencent\\WeChat Files\\wo772590001\\', 'wxid': 'wo772590001'}
+2022-11-05 22:07:04,317 [INFO] [control.views.user] {'account': 'zhujiuhong123', 'avatar': 'http://wx.qlogo.cn/mmhead/ver_1/CicoJe3rficicG5wWx5dzf9TxO07oY2sq0B5E5JGyEJKT60js1ic4m4jO0aqicTAxX1SCMRpbwVDmfZ7bZqdn6pY5qw/0', 'nickname': '微笑', 'phone': '18344031528', 'pid': 14664, 'unread_msg_count': 0, 'wx_user_dir': 'D:\\soft-doc\\Tencent\\WeChat Files\\wo772590001\\', 'wxid': 'wo772590001'}
+2022-11-05 22:17:54,708 [INFO] [control.views.user] {'account': 'zhujiuhong123', 'avatar': 'http://wx.qlogo.cn/mmhead/ver_1/CicoJe3rficicG5wWx5dzf9TxO07oY2sq0B5E5JGyEJKT60js1ic4m4jO0aqicTAxX1SCMRpbwVDmfZ7bZqdn6pY5qw/0', 'nickname': '微笑', 'phone': '18344031528', 'pid': 15876, 'unread_msg_count': 0, 'wx_user_dir': 'D:\\soft-doc\\Tencent\\WeChat Files\\wo772590001\\', 'wxid': 'wo772590001'}

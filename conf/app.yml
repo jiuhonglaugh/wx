@@ -1,0 +1,12 @@
+---
+app:
+  host: 127.0.0.1
+  port: 8000
+
+
+log:
+  log_file: logs/app.log
+  clevel: info
+  flevel: info
+  format: "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
+  date_format: "%Y-%m-%d %A %H:%M:%S"
