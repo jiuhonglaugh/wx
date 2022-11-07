@@ -5,6 +5,7 @@
 # @Software: PyCharm
 
 from core.Server import Server
+import RegisterBlueViews
 
 if __name__ == '__main__':
     server = Server()

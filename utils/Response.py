@@ -12,11 +12,3 @@ def response_json(status=500, data=None, msg=""):
         "data": {} if data is None else data,
         "msg": msg}
 
-
-def response_img(image_path, **kwargs):
-    with open(image_path, 'r')as r:
-        response = make_response(r.read())
-        response.headers['Content-Type'] = 'image/png'
-        for k, v in kwargs.items():
-            response.headers[k] = v
-        return response

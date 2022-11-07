@@ -4,7 +4,6 @@
 # @File    : Server.py
 # @Software: PyCharm
 import core
-from core import app
 
 
 class Server:
@@ -14,4 +13,4 @@ class Server:
         self.port = app_conf.get('port', 80)
 
     def start(self):
-        app.run(self.app_host, self.port)
+        core.app.run(self.app_host, self.port)

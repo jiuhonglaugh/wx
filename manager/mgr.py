@@ -13,6 +13,7 @@ class ClientWeChat(ntchat.WeChat):
     qrcode_event: threading.Event = None
     qrcode: str = ""
     qrcode_path = ""
+    is_open = False
 
 
 class ClientManager(metaclass=Singleton):

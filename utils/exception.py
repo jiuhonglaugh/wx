@@ -4,9 +4,7 @@
 # @File    : exception.py
 # @Software: PyCharm
 from functools import wraps
-
 import ntchat
-
 from utils.Response import response_json
 
 
@@ -24,9 +22,9 @@ class MediaNotExistsError(Exception):
 class CatchException:
     def __call__(self, f):
         @wraps(f)
-        def wrapper(*args, **kwargs):
+        async def wrapper(*args, **kwargs):
             try:
-                return f(*args, **kwargs)
+                return await f(*args, **kwargs)
             except ntchat.WeChatNotLoginError:
                 return response_json(msg="wechat instance not login")
             except ntchat.WeChatBindError:

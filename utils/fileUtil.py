@@ -14,9 +14,9 @@ def get_file_as_stream(file):
 
 
 def repair_path(path):
-    if str(path).endswith('/'):
+    if str(path).endswith(os.sep):
         return path
-    return path + '/'
+    return path + os.sep
 
 
 def get_file_as_lines(file) -> list:
