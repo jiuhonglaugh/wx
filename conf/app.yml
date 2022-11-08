@@ -2,6 +2,8 @@
 app:
   host: 127.0.0.1
   port: 80
+  user: admin
+  password: 123456
 
 
 log:
@@ -16,5 +18,5 @@ log:
 ntchat:
   wx_exe_path: 'C:\Program Files (x86)\Tencent\WeChat\WeChat.exe'
   wx_version: 3.6.0.18
-  callback_url: 'http://127.0.0.1:80/client/callback'
-  qrcode_img_path: 'D:\qrcodes'
+  callback_url: 'http://127.0.0.1:80/callback'
+  qrcode_img_path: 'E:\qrcodes'

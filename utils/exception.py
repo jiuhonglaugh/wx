@@ -6,6 +6,7 @@
 from functools import wraps
 import ntchat
 from utils.Response import response_json
+from flask import request
 
 
 class ClientNotExists(Exception):
@@ -37,5 +38,19 @@ class CatchException:
                 return response_json(msg="client not exists, guid: %s" % e.guid)
             except Exception as e:
                 return response_json(msg=str(e))
+
+        return wrapper
+
+
+class ClientLoginAuth:
+    def __call__(self, f):
+        @wraps(f)
+        def wrapper(*args, **kwargs):
+            from core import client_mgr
+            guid = request.get_json()['guid']
+            client = client_mgr.get_client(guid)
+            if client.is_open and client.login_status:
+                return f(*args, **kwargs)
+            return 500, {"guid": guid, 'client_is_open': client.is_open, 'login_status': client.login_status}, ''
 
         return wrapper

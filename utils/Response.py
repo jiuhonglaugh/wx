@@ -6,9 +6,8 @@
 from flask import make_response
 
 
-def response_json(status=500, data=None, msg=""):
+def response_json(code=500, data=None, msg=""):
     return {
-        "status": status,
+        "code": code,
         "data": {} if data is None else data,
         "msg": msg}
-
