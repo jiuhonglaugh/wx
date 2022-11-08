@@ -19,7 +19,6 @@ def screenshot(save_path, window_name='微信'):
 
     win32gui.EnumWindows(_get_all_hwnd, 0)
     for id, title_name in hwnd_title.items():
-        print(id, title_name)
         if title_name == window_name:
             app = QApplication(sys.argv)
             screen = QApplication.primaryScreen()
@@ -33,7 +32,7 @@ def screenshot(save_path, window_name='微信'):
 
 
 def generate_guid(prefix=''):
-    return str(uuid.uuid3(uuid.NAMESPACE_URL, prefix + str(time.time())))
+    return str(uuid.uuid3(uuid.NAMESPACE_URL, prefix + str(time.time()))).replace('-', '')
 
 
 class ClientNotExists(Exception):
@@ -48,6 +47,8 @@ class MediaNotExistsError(Exception):
 
 
 if __name__ == '__main__':
+
+    print(screenshot('../qrcodes/aa.jpg'))
 
     hwnd_title = dict()
 

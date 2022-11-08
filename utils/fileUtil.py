@@ -7,6 +7,11 @@ import os
 from os.path import dirname, abspath
 
 
+def remove_file(file_path):
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
+
 def get_file_as_stream(file):
     if os.path.exists(file):
         with open(file, 'r') as r:

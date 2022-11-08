@@ -13,7 +13,7 @@ from utils.Logger import Logger
 from utils.Response import response_json
 from utils.common import screenshot
 from utils.exception import CatchException
-from utils.fileUtil import repair_path
+from utils.fileUtil import repair_path, remove_file
 
 client_blue = Blueprint('client', __name__, url_prefix="/client")
 log = Logger(loggername=__name__)
@@ -24,10 +24,17 @@ client_mgr.callback_url = ntchat_conf.get("callback_url")
 
 @client_blue.route('/callback', methods=['GET', 'POST'])
 def on_callback():
-    data = request.stream.read()
-    data = json.loads(data.decode('utf-8'))
-    if data['type'] == 11026:
-        client_mgr.remove_client(data['guid'])
+    callback_data = request.stream.read()
+    callback_data = json.loads(callback_data.decode('utf-8'))
+    msg = callback_data['message']
+    type = msg['type']
+    data = msg['data']
+    guid = callback_data['guid']
+    wechat_client = client_mgr.get_client(guid)
+    log.error(callback_data)
+    if type == 11026:
+        remove_file(wechat_client.qrcode_path)
+        client_mgr.remove_client(callback_data['guid'])
     return ''
 
 
@@ -49,8 +56,8 @@ async def open():
     ret = client.open(False, True)
     client.qrcode_event = threading.Event()
     client.qrcode_event.wait(timeout=10)
-    client.qrcode_path = f"{repair_path(ntchat_conf.get('qrcode_img_path', './qrcodes'))}{guid}.jpg"
-    screenshot(client.qrcode_path)
+    client.qrcode_path = f"{repair_path(ntchat_conf.get('qrcode_img_path', '../qrcodes'))}{guid}.jpg"
+    ret = screenshot(client.qrcode_path)
     return response_json(status=200 if ret else 500, data={"guid": guid, 'client_is_open': ret})
 
 
