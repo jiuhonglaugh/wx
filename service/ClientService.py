@@ -6,14 +6,14 @@
 
 class ClientService:
 
-    def create_client(self):
+    def create_client(self) -> (int, dict, str):
         pass
 
     def open_client(self, guid: str, smart: bool = False, show_login_qrcode: bool = True):
         pass
 
-    def logout_client(self, guid: str):
+    def logout_client(self, guid: str) -> (int, dict, str):
         pass
 
-    def status_client(self, guid: str):
+    def status_client(self, guid: str) -> (int, dict, str):
         pass

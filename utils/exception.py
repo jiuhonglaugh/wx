@@ -46,9 +46,9 @@ class ClientLoginAuth:
     def __call__(self, f):
         @wraps(f)
         def wrapper(*args, **kwargs):
-            from core import client_mgr
+            from core import CLIENT_MGR
             guid = request.get_json()['guid']
-            client = client_mgr.get_client(guid)
+            client = CLIENT_MGR.get_client(guid)
             if client.is_open and client.login_status:
                 return f(*args, **kwargs)
             return 500, {"guid": guid, 'client_is_open': client.is_open, 'login_status': client.login_status}, ''

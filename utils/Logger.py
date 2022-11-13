@@ -18,16 +18,16 @@ class Logger:
     def __init__(self, loggername='default'):
         self.logger = logging.getLogger(name=loggername)
         self.logger.setLevel(logging.DEBUG)
-        fmt = logging.Formatter(core.log_conf.get('format'))
+        fmt = logging.Formatter(core.LOG_CONF.get('format'))
         # 设置Console日志
         sh = logging.StreamHandler()
         sh.setFormatter(fmt)
-        sh.setLevel(get_level(core.log_conf.get('clevel')))
+        sh.setLevel(get_level(core.LOG_CONF.get('clevel')))
         # 设置文件日志
 
-        fh = logging.FileHandler(filename=sp(core.log_conf.get('log_file')), encoding='utf-8')
+        fh = logging.FileHandler(filename=sp(core.LOG_CONF.get('log_file')), encoding='utf-8')
         fh.setFormatter(fmt)
-        fh.setLevel(get_level(core.log_conf.get('flevel')))
+        fh.setLevel(get_level(core.LOG_CONF.get('flevel')))
         self.logger.addHandler(sh)
         self.logger.addHandler(fh)
 

@@ -19,26 +19,29 @@ client_service: ClientService = ClientServiceImp()
 @client_blue.route('/create', methods=['GET'])
 @CatchException()
 async def create():
-    result = client_service.create_client()
-    return response_json(result)
+    code, data, msg = client_service.create_client()
+    return response_json(code, data, msg)
 
 
 @client_blue.route("/open", methods=["POST"])
 @CatchException()
 async def open():
     open_data = request.get_json()
-    return response_json(client_service.open_client(open_data.get('guid')))
+    code, data, msg = client_service.open_client(open_data.get('guid'))
+    return response_json(code, data, msg)
 
 
 @client_blue.route("/logout", methods=["POST"])
 @CatchException()
 async def logout():
     logout_data = request.get_json()
-    return response_json(client_service.logout_client(logout_data.get('guid')))
+    code, data, msg = client_service.logout_client(logout_data.get('guid'))
+    return response_json(code, data, msg)
 
 
 @client_blue.route("/status", methods=["POST"])
 @CatchException()
 async def status():
     info_data = request.get_json()
-    return response_json(client_service.status_client(info_data.get('guid')))
+    code, data, msg = client_service.status_client(info_data.get('guid'))
+    return response_json(code, data, msg)

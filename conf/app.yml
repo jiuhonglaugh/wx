@@ -20,4 +20,11 @@ ntchat:
   wx_exe_path: 'C:\Program Files (x86)\Tencent\WeChat\WeChat.exe'
   wx_version: 3.6.0.18
   callback_url: 'http://82.157.161.174:30008/callback'
-  qrcode_img_path: 'E:\qrcodes'
+  qrcode_img_path: 'D:\qrcodes'
+
+
+websocket:
+  protocol: ws://
+  host: 82.157.161.174
+  prot: 30008
+  path: /websocket/071cd83d12e3358e8d62ba2a36e0f296

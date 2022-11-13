@@ -13,26 +13,26 @@ class RoomService:
     def create_room(self, guid: str, member_list: List[str]) -> (int, dict, str):
         pass
 
-    def get_room_detail(self, guid: str, room_wxid: str) -> (int, dict, str):
+    def get_room_detail(self, guid: str, room_wxid: str) -> (int, dict):
         pass
 
-    def send_room_at_msg(self, guid: str, to_room_wxid: str, content: str, at_list: List[str]) -> (int, dict, str):
+    def send_room_at_msg(self, guid: str, to_room_wxid: str, content: str, at_list: List[str]) -> int:
         pass
 
-    def del_room_member(self, guid: str, room_wxid: str, member_list: List[str]) -> (int, dict, str):
+    def del_room_member(self, guid: str, room_wxid: str, member_list: List[str]) -> (int, dict):
         pass
 
-    def add_room_member(self, guid: str, room_wxid: str, member_list: List[str]) -> (int, dict, str):
+    def add_room_member(self, guid: str, room_wxid: str, member_list: List[str]) -> (int, dict):
         pass
 
-    def add_room_friend(self, guid: str, room_wxid: str, wxid: str, verify: str, ):
+    def add_room_friend(self, guid: str, room_wxid: str, wxid: str, verify: str) -> int:
         pass
 
-    def quit_room(self, guid: str, room_wxid: str):
+    def quit_room(self, guid: str, room_wxid: str) -> int:
         pass
 
-    def get_room_members(self, guid: str, room_wxid: str):
+    def get_room_members(self, guid: str, room_wxid: str) -> (int, dict):
         pass
 
-    def get_room_name(self, guid: str, room_wxid: str):
+    def get_room_name(self, guid: str, room_wxid: str) -> (int, dict):
         pass

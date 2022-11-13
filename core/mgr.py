@@ -18,7 +18,10 @@ class ClientWeChat(ntchat.WeChat):
 
 class ClientManager(metaclass=Singleton):
     __client_map: Dict[str, ClientWeChat] = {}
-    callback_url: str = ""
+    __callback_url: str = ""
+
+    def __init__(self, callback_url):
+        self.__callback_url = callback_url
 
     def new_guid(self):
         """
@@ -62,14 +65,14 @@ class ClientManager(metaclass=Singleton):
             wechat.qrcode = message["data"]["code"]
             wechat.qrcode_event.set()
 
-        if not self.callback_url:
+        if not self.__callback_url:
             return
 
         client_message = {
             "guid": wechat.guid,
             "message": message
         }
-        requests.post(self.callback_url, json=client_message)
+        requests.post(self.__callback_url, json=client_message)
 
     def __on_quit_callback(self, wechat):
         self.__on_callback(wechat, {"type": ntchat.MT_RECV_WECHAT_QUIT_MSG, "data": {}})

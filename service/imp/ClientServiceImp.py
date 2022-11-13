@@ -4,7 +4,7 @@
 # @File    : __init__.py.py
 # @Software: PyCharm
 import threading
-from core import client_mgr, ntchat_conf
+from core import CLIENT_MGR, NTCHAT_CONF
 from service.ClientService import ClientService
 from utils.common import screenshot, close_process
 from utils.exception import ClientLoginAuth
@@ -12,13 +12,13 @@ from utils.fileUtil import repair_path, remove_file
 
 
 class ClientServiceImp(ClientService):
-    def create_client(self):
-        guid = client_mgr.create_client()
+    def create_client(self) -> (int, dict, str):
+        guid = CLIENT_MGR.create_client()
         data = {"guid": guid, 'client_is_open': False, 'login_status': False}
-        return 200, data
+        return 200, data, ''
 
-    def open_client(self, guid: str, smart: bool = False, show_login_qrcode: bool = True):
-        client = client_mgr.get_client(guid)
+    def open_client(self, guid: str, smart: bool = False, show_login_qrcode: bool = True) -> (int, dict, str):
+        client = CLIENT_MGR.get_client(guid)
         data = {'guid': guid, 'login_status': client.login_status}
         if client.is_open:
             data['client_is_open'] = client.is_open
@@ -27,19 +27,19 @@ class ClientServiceImp(ClientService):
         client.is_open = client.open(smart, show_login_qrcode)
         client.qrcode_event = threading.Event()
         client.qrcode_event.wait(timeout=10)
-        client.qrcode_path = f"{repair_path(ntchat_conf.get('qrcode_img_path', '../qrcodes'))}{guid}.jpg"
+        client.qrcode_path = f"{repair_path(NTCHAT_CONF.get('qrcode_img_path', '../qrcodes'))}{guid}.jpg"
         ret = screenshot(client.qrcode_path)
         data['client_is_open'] = client.is_open
-        return 200 if ret and client.is_open else 500, data
+        return 200 if ret and client.is_open else 500, data, ''
 
     @ClientLoginAuth()
-    def logout_client(self, guid: str):
-        client = client_mgr.get_client(guid)
+    def logout_client(self, guid: str) -> (int, dict, str):
+        client = CLIENT_MGR.get_client(guid)
         remove_file(client.qrcode_path)
         close_process(client.pid)
-        client_mgr.remove_client(guid)
-        return 200, {"guid": guid, 'client_is_open': False}
+        CLIENT_MGR.remove_client(guid)
+        return 200, {"guid": guid, 'client_is_open': False}, ''
 
-    def status_client(self, guid: str):
-        client = client_mgr.get_client(guid)
-        return 200, {'guid': guid, 'client_is_open': client.is_open, 'login_status': client.login_status}
+    def status_client(self, guid: str) -> (int, dict, str):
+        client = CLIENT_MGR.get_client(guid)
+        return 200, {'guid': guid, 'client_is_open': client.is_open, 'login_status': client.login_status}, ''
