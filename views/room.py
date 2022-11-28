@@ -8,7 +8,7 @@ from core import CLIENT_MGR
 from service.imp.RoomServiceImp import RoomService, RoomServiceImp
 from utils.Logger import Logger
 from utils.Response import response_json
-from utils.exception import CatchException
+from utils.exception import CatchException, ClientLoginAuth
 
 room_blue = Blueprint('rooms', __name__, url_prefix="/rooms")
 log = Logger(loggername=__name__)
@@ -103,9 +103,34 @@ async def get_room_name():
     return response_json(code, data)
 
 
-@room_blue.route('/get_publics', methods=['POST'])
+@room_blue.route('/inviteRoomMember')
 @CatchException()
-async def get_publics():
-    uid = request.get_json().get('uid')
-    wechat = CLIENT_MGR.get_client(uid)
-    return response_json(200, {'publics': wechat.get_publics()})
+async def invite_room_member():
+    request_data = request.get_json()
+    guid = request_data.get('guid')
+    room_wxid = request_data.get('room_wxid')
+    members_list = request_data.get('member_list')
+    code = room_service.invite_room_member(guid, room_wxid, members_list)
+    return response_json(code)
+
+
+@room_blue.route('/modifyRoomName')
+@CatchException()
+async def modify_room_name():
+    request_data = request.get_json()
+    guid = request_data.get('guid')
+    room_wxid = request_data.get('room_wxid')
+    name = request_data.get('name')
+    code = room_service.modify_room_name(guid, room_wxid, name)
+    return response_json(code)
+
+
+@room_blue.route('/modifyRoomNotice')
+@CatchException()
+async def modify_room_notice(guid, room_wxid, notice):
+    request_data = request.get_json()
+    guid = request_data.get('guid')
+    room_wxid = request_data.get('room_wxid')
+    notice = request_data.get('notice')
+    code = room_service.modify_room_notice(guid, room_wxid, notice)
+    return response_json(code)

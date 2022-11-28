@@ -5,9 +5,8 @@
 # @Software: PyCharm
 
 import logging
-
-import core
-from utils import timeUtil
+from logging.handlers import RotatingFileHandler
+from core import LOG_CONF
 
 '''
 loggername 参数最好指定，如果不指定可能会导致日志重复输出
@@ -15,21 +14,29 @@ loggername 参数最好指定，如果不指定可能会导致日志重复输出
 
 
 class Logger:
-    def __init__(self, loggername='default'):
+    def __init__(self, loggername='default', log_file_name='app'):
         self.logger = logging.getLogger(name=loggername)
         self.logger.setLevel(logging.DEBUG)
-        fmt = logging.Formatter(core.LOG_CONF.get('format'))
+        fmt = logging.Formatter(LOG_CONF.get('format'))
         # 设置Console日志
-        sh = logging.StreamHandler()
-        sh.setFormatter(fmt)
-        sh.setLevel(get_level(core.LOG_CONF.get('clevel')))
-        # 设置文件日志
+        if LOG_CONF.get('c_open'):
+            sh = logging.StreamHandler()
+            sh.setFormatter(fmt)
+            sh.setLevel(get_level(LOG_CONF.get('clevel')))
+            self.logger.addHandler(sh)
 
-        fh = logging.FileHandler(filename=sp(core.LOG_CONF.get('log_file')), encoding='utf-8')
-        fh.setFormatter(fmt)
-        fh.setLevel(get_level(core.LOG_CONF.get('flevel')))
-        self.logger.addHandler(sh)
-        self.logger.addHandler(fh)
+        # 设置文件日志
+        if LOG_CONF.get('f_open', True):
+            log_file_path = f"{LOG_CONF.get('log_dir').format(log_file_name)}.log"
+            file_max_bytes = LOG_CONF.get('file_max', 512) * 1024
+            file_count = LOG_CONF.get('file_count', 3)
+            fh = RotatingFileHandler(filename=log_file_path,
+                                     encoding='utf-8',
+                                     maxBytes=file_max_bytes,
+                                     backupCount=file_count)
+            fh.setFormatter(fmt)
+            fh.setLevel(get_level(LOG_CONF.get('flevel')))
+            self.logger.addHandler(fh)
 
     def debug(self, message):
         self.logger.debug(message)
@@ -56,11 +63,3 @@ def get_level(level):
         return logging.DEBUG
     else:
         return logging.INFO
-
-
-def sp(old_path, symbol='/'):
-    args = old_path.split(symbol)
-    file_name = args[-1]
-    file_len = len(args[-1])
-    filepath = old_path[:-file_len] + timeUtil.get_time('%Y-%m-%d') + '-' + file_name
-    return filepath

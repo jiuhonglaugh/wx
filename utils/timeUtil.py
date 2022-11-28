@@ -7,7 +7,11 @@ import time
 import datetime
 
 
-def format_time(format='%Y-%m-%d %H:%M:%S', timestamp=time.time(), reduce=0):
+def get_time_stamp_ms():
+    return time.time()
+
+
+def format_time(format='%Y-%m-%d %H:%M:%S', timestamp=get_time_stamp_ms(), reduce=0):
     return time.strftime(format, time.localtime(timestamp - reduce))
 
 

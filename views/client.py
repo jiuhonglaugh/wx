@@ -9,7 +9,7 @@ from service.ClientService import ClientService
 from service.imp.ClientServiceImp import ClientServiceImp
 from utils.Logger import Logger
 from utils.Response import response_json
-from utils.exception import CatchException
+from utils.exception import CatchException, ClientLoginAuth
 
 client_blue = Blueprint('client', __name__, url_prefix="/client")
 log = Logger(loggername=__name__)

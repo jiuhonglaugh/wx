@@ -4,8 +4,9 @@ import requests
 import threading
 from typing import Dict, Union
 from ntchat.utils.singleton import Singleton
-from utils.common import generate_guid
+from utils.common import generate_guid, close_process
 from utils.exception import ClientNotExists
+from utils.fileUtil import remove_file
 
 
 class ClientWeChat(ntchat.WeChat):
@@ -14,11 +15,15 @@ class ClientWeChat(ntchat.WeChat):
     qrcode: str = ""
     qrcode_path = ""
     is_open = False
+    create_time = 0
 
 
 class ClientManager(metaclass=Singleton):
     __client_map: Dict[str, ClientWeChat] = {}
     __callback_url: str = ""
+
+    def get_all_clients(self):
+        return self.__client_map.copy()
 
     def __init__(self, callback_url):
         self.__callback_url = callback_url
@@ -33,9 +38,10 @@ class ClientManager(metaclass=Singleton):
                 return guid
 
     # 创建实例
-    def create_client(self):
+    def create_client(self, create_time):
         guid = self.new_guid()
         wechat = ClientWeChat()
+        wechat.create_time = create_time
         wechat.guid = guid
         self.__client_map[guid] = wechat
 
@@ -54,8 +60,12 @@ class ClientManager(metaclass=Singleton):
     # 删除实例
     def remove_client(self, guid):
         if guid in self.__client_map:
+            client = self.get_client(guid)
+            remove_file(client.qrcode_path)
+            client.on_close()
             del self.__client_map[guid]
-        return self.__client_map
+            return True
+        return False
 
     def __on_callback(self, wechat: ClientWeChat, message: dict):
 

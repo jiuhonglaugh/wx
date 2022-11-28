@@ -6,7 +6,8 @@
 from core.mgr import ClientManager
 from utils.confUtil import get_conf_by_name
 
-APP_CONF = get_conf_by_name('app.yml')
-LOG_CONF = APP_CONF.get('log', {})
-NTCHAT_CONF = APP_CONF.get('ntchat', {})
+CONTEXT_CONF = get_conf_by_name('app.yml')
+APP_CONF = CONTEXT_CONF.get('app', {})
+LOG_CONF = CONTEXT_CONF.get('log', {})
+NTCHAT_CONF = CONTEXT_CONF.get('ntchat', {})
 CLIENT_MGR = ClientManager(NTCHAT_CONF.get("callback_url"))

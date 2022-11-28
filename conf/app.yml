@@ -5,14 +5,21 @@ app:
   debug: False
   user: admin
   password: 123456
+  cors: False
+  clean_client_mm: 1
+  client_expiration_time_mm: 2
 
 
 log:
-  log_file: logs/app.log
+  log_dir: 'logs/{}'
+  c_open: True
   clevel: info
+  f_open: False
   flevel: info
   format: "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
   date_format: "%Y-%m-%d %A %H:%M:%S"
+  file_max: 512
+  file_count: 3
 
 
 

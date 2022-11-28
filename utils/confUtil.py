@@ -6,7 +6,7 @@
 
 import yaml
 
-from utils.fileUtil import get_home, get_config_path, repair_path
+from utils.fileUtil import get_config_path, repair_path
 
 
 def get_conf(o) -> dict:
